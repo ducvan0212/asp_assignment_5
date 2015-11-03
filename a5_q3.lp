@@ -1,3 +1,20 @@
+% Command: clingo -c length=5 a5_q3.lp
+% Test Scenario 1: 
+%occ(action(close_valve), 1).
+%occ(action(open_valve), 3).
+
+% Test Scenario 2: 
+%occ(action(turn_switch_on), 1).
+%occ(action(turn_switch_off), 3).
+
+% Assignment Scenario 1: 
+%occ(action(close_valve), 1).
+%occ(action(turn_switch_on), 2).
+
+% Assignment Scenario 2: 
+occ(action(turn_switch_on), 1).
+occ(action(close_valve), 2).
+occ(action(turn_switch_on), 3).
 
 % Defining the constants
 time(0..length).  
@@ -121,18 +138,5 @@ holds(gasoline_available(nogas), 0).
 % goal
 
 1 { occ(A, T): action(A) } 1 :- time(T). 
-
-% Test Scenario 1: 
-%occ(action(close_valve), 1).
-%occ(action(open_valve), 3).
-
-% Test Scenario 2: 
-occ(action(turn_switch_on), 1).
-occ(action(turn_switch_off), 3).
-
-% Scenario 2: 
-%occ(action(turn_switch_on), 1).
-%occ(action(close_valve), 2).
-%occ(action(turn_switch_on), 3).
 
 #show holds/2.
