@@ -48,31 +48,31 @@ holds(valve(closed),T+1):-  time(T),
     holds(valve(opened), T).
 
 % When the valve is closed then gasoline is supplied from the tank to the engine. We assume that the tank always has gasoline.   
-holds(gasoline_available(gasoline), T+1) :- time(T),
+holds(gasoline_available(gasoline), T) :- time(T),
     holds(valve(closed), T),
     holds(tank(gasoline), T).
 
 % When the valve is opened, there will be no gasoline in engine.
-holds(gasoline_available(nogas), T+1) :- time(T),
+holds(gasoline_available(nogas), T) :- time(T),
     holds(valve(opened), T).
 
 % When the swith is at the on/off position, the engine is on/off.
-holds(engine(S), T+1) :- time(T),
+holds(engine(S), T) :- time(T),
     holds(switch(S),T).
 
 % When the engine is on and the valve is closed then the car will run.  
-holds(car(running), T+1) :- time(T),
+holds(car(running), T) :- time(T),
     holds(engine(on), T),
     holds(gasoline_available(gasoline), T),
     holds(damaged(no), T).
 
 % When the engine is on and the valve is open then the car will be damaged.  
-holds(damaged(yes), T+1) :- time(T),
+holds(damaged(yes), T) :- time(T),
     holds(engine(on), T),
     holds(valve(opened), T).
 
 % When the engine is damaged then the car will not run.  
-holds(car(damaged), T+1) :- time(T),
+holds(car(damaged), T) :- time(T),
     holds(damaged(yes), T).
 
 % Frame problem. If valve is NOT closed/opened in time T then it remains opened/closed in time T+1
@@ -122,10 +122,13 @@ holds(gasoline_available(nogas), 0).
 
 1 { occ(A, T): action(A) } 1 :- time(T). 
 
-% Scenario 1: 
-occ(action(close_valve), 1).
-occ(action(open_valve), 3).
-%occ(action(turn_switch_on), 2).
+% Test Scenario 1: 
+%occ(action(close_valve), 1).
+%occ(action(open_valve), 3).
+
+% Test Scenario 2: 
+occ(action(turn_switch_on), 1).
+occ(action(turn_switch_off), 3).
 
 % Scenario 2: 
 %occ(action(turn_switch_on), 1).
