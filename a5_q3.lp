@@ -69,10 +69,6 @@ holds(gasoline_available(gasoline), T) :- time(T),
     holds(valve(closed), T),
     holds(tank(gasoline), T).
 
-% When the valve is opened, there will be no gasoline in engine.
-holds(gasoline_available(nogas), T) :- time(T),
-    holds(valve(opened), T).
-
 % When the swith is at the on/off position, the engine is on/off.
 holds(engine(S), T) :- time(T),
     holds(switch(S),T).
@@ -121,7 +117,10 @@ holds(damaged(yes), T+1) :- time(T),
 % If engine is NOT damaged then it is ok in time T.    
 holds(damaged(no), T) :- time(T),
     not holds(damaged(yes), T).
-     
+
+% Expressing what we do not state as true are false!
+holds(neg(F),0) :- fluent(F), not holds(F,0).
+
 % initial condition
 holds(valve(opened),0). 
 holds(switch(off),0). 
