@@ -1,7 +1,7 @@
 % Command: clingo -c length=5 a5_q3.lp
 % Test Scenario 1: 
-%occ(action(close_valve), 1).
-%occ(action(open_valve), 3).
+occ(action(close_valve), 1).
+occ(action(open_valve), 3).
 
 % Test Scenario 2: 
 %occ(action(turn_switch_on), 1).
@@ -12,9 +12,9 @@
 %occ(action(turn_switch_on), 2).
 
 % Assignment Scenario 2: 
-occ(action(turn_switch_on), 1).
-occ(action(close_valve), 2).
-occ(action(turn_switch_on), 3).
+%occ(action(turn_switch_on), 1).
+%occ(action(close_valve), 2).
+%occ(action(turn_switch_on), 3).
 
 % Defining the constants
 time(0..length).  
