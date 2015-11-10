@@ -1,3 +1,4 @@
+# Command: python a5_q4.py
 #script (python)
 
 import gringo
@@ -20,15 +21,17 @@ def main():
     # with each model in intermediate results
     for i, model in enumerate(intermediate):
         # assign each atoms in p model to be true in q
+        print "Answer for program p: %s" % (model)
         for k in model.atoms(gringo.Model.ATOMS):
+            print "    Fetch to program q: %s %s" % (k, True)
             q._prg.assign_external(k, True)   
         # calculate final solutions, where wizard does his job.
         final = q._prg.solve_iter()
         for j, fiso in enumerate(final):
-            print "Allakhazam: %s" % (fiso)
+            print "    Allakhazam: %s\n" % (fiso)
         # remove assignments.
         for k in model.atoms(gringo.Model.ATOMS):
-            q._prg.release_external(k)
+            q._prg.assign_external(k, False)
         
 #end.
 

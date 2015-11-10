@@ -1,4 +1,4 @@
 a :- not b.    
 b :- not a.
-e.
-f.
+e :- not f.
+f :- not e.
