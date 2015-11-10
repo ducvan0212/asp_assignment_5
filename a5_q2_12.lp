@@ -1,3 +1,4 @@
+% Command: clingo 0 -c length=10 a5_q2_12.lp
 
 % Defining the constants
 time(0..length).  
@@ -86,7 +87,7 @@ holds(boat_at(l1),0).
 % goal
 :- not goal(length).
 
-goal(T):- numberm(I), numberc(J), holds(at(4,2,l2), T).
+goal(T):- numberm(I), numberc(J), holds(at(I,J,l2), T), I+J=6.
 
 1 { occ(A, T): action(A) } 1 :- time(T), not goal(T).
 
